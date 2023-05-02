@@ -11,16 +11,6 @@ view: pc4data {
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "Ftype" in Explore.
 
-  dimension: cityName {
-    sql: ${TABLE}.cityName ;;
-    map_layer_name: my_crisp_layer
-  }
-
-  dimension: geodataZEZ {
-    sql: ${TABLE}.geodataZEZ ;;
-    map_layer_name: my_crisp_layer
-  }
-
   dimension: ftype {
     type: string
     sql: ${TABLE}.FTYPE ;;
@@ -29,6 +19,7 @@ view: pc4data {
   dimension: pc4 {
     type: number
     sql: ${TABLE}.PC4 ;;
+    map_layer_name: my_crisp_layer
   }
 
   # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
