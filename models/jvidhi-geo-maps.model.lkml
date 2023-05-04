@@ -28,6 +28,6 @@ persist_with: jvidhi-geo-maps_default_datagroup
 explore: pc4data {}
 
 map_layer: my_crisp_layer {
-  file: "/maps/georef-netherlands-postcode-pc4.json"
+  file: "/maps/georef-netherlands-postcode-pc4_compressed30.json"
   property_key: "PC4"
 }
