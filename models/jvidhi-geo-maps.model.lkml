@@ -31,3 +31,9 @@ map_layer: my_crisp_layer {
   file: "/maps/georef-netherlands-postcode-pc4_compressed30.json"
   property_key: "PC4"
 }
+
+
+map_layer: zero_emissions_layer {
+  file: "/maps/zeroEmissionZones.json"
+  property_key: "cityName"
+}
