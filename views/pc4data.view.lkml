@@ -19,7 +19,7 @@ view: pc4data {
   dimension: pc4 {
     type: number
     sql: ${TABLE}.PC4 ;;
-    map_layer_name: my_crisp_layer
+    map_layer_name: full_pc4_layer
   }
 
   dimension: Gemeente_code {
@@ -35,17 +35,44 @@ view: pc4data {
   dimension: Provincie_name {
     type: string
     sql: ${TABLE}.Provincie_name ;;
-    map_layer_name: zero_emissions_layer
+    # map_layer_name: zero_emissions_layer
   }
 
   dimension: Gemeente_name {
     type: string
     sql: ${TABLE}.Gemeente_name ;;
+    # map_layer_name: topo_zero_emissions
+    map_layer_name: full_pc4_layer
+  }
+
+  dimension: emission_type {
+    type: string
+    sql:${TABLE}.type_type ;;
+  }
+
+  dimension: cityName {
+    type: string
+    sql:${TABLE}.cityName ;;
+    map_layer_name: topo_zero_emissions
+  }
+
+
+  measure : zero_emission_zone {
+    type: sum
+    sql:  case when ${TABLE}.zero_emission_range =1.0 then 1 else 0 end;;
   }
 
   # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
   # measures for this dimension, but you can also add measures of many different aggregates.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
+
+  measure: ftype_boolean {
+    type: sum
+    sql: case when ${ftype} ="EV" and ${TABLE}.zero_emission_range = 1.0 then 1
+    when ${ftype} ="EV" and ${TABLE}.zero_emission_range != 1.0 then 0
+    when ${ftype} ="NON_EV" and ${TABLE}.zero_emission_range = 1.0 then 0.75
+    else -1 END  ;;
+  }
 
   measure: total_pc4 {
     type: sum

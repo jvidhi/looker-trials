@@ -8,7 +8,7 @@ include: "/views/**/*.view"
 # use the Quick Help panel on the right to see documentation.
 
 datagroup: jvidhi-geo-maps_default_datagroup {
-  # sql_trigger: SELECT MAX(id) FROM etl_log;;
+  sql_trigger: SELECT count(1) FROM crisp_emissions.pc4data;;
   max_cache_age: "1 hour"
 }
 
@@ -27,13 +27,18 @@ persist_with: jvidhi-geo-maps_default_datagroup
 
 explore: pc4data {}
 
-map_layer: my_crisp_layer {
-  file: "/maps/georef-netherlands-postcode-pc4_compressed30.json"
-  property_key: "PC4"
-}
-
-
-map_layer: zero_emissions_layer {
-  file: "/maps/zeroEmissionZones.json"
+map_layer: topo_zero_emissions {
+  file: "/maps/topo_geodataZEZ.json"
   property_key: "cityName"
 }
+
+map_layer: full_pc4_layer {
+  file: "/maps/georef-netherlands-postcode-pc4_compressed30.json"
+  # property_key: "pc4_code"
+  # property_key: "gem_name"
+}
+
+# map_layer: zero_emissions_layer {
+#   file: "/maps/zeroEmissionZones.json"
+#   property_key: "cityName"
+# }
